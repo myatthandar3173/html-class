@@ -91,6 +91,12 @@ img {
     font-weight: bold;
 }
 
+.btn-info {
+    width: 300px;
+    margin-top: 40px;
+    background-color: $color-main;
+}
+
 
 
 /*header*/
@@ -207,4 +213,8 @@ img {
 
 .post {
     padding-top: 60px;
+
+    &__content {
+        margin-top: 20px;
+    }
 }
