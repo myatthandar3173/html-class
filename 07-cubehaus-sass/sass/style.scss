@@ -1,0 +1,301 @@
+@use'sass:math';
+
+$color-text: #000000;
+$color-main: #fff;
+$color-bg: #F4F4F4;
+$color-tag: #E40065;
+
+$font-famly-base: "游ゴシック", "Yu Gothic", Helvetica, Arial, sans-serif;
+$breakpoints: (
+    "desktop":640px,
+);
+
+@mixin mq($breakpoint: desktop) {
+    @media (#{map-get($breakpoints, $breakpoint)} <=width) {
+        @content;
+    }
+}
+
+@mixin inner($mw: 1000px, $w: percentage(math.div(560, 640))) {
+    max-width: $mw;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin title-main($t) {
+    margin-bottom: 60px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: math.div(54, 32);
+    text-align: center;
+
+    &::before {
+        content: $t;
+        display: block;
+        margin-bottom: 20px;
+        font-size: 14px;
+        line-height: math.div(14, 14);
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        margin: 25px auto 0;
+        width: 100px;
+        border-bottom: 2px solid $color-tag;
+    }
+}
+
+/*common
+------------------------------*/
+body {
+    color: $color-text;
+    font-size: 14px;
+    font-family: $font-famly-base;
+    line-height: math.div(24, 14);
+    letter-spacing: #{ math.div(50, 1000)em};
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/*header*/
+.header {
+    padding: 40px 0;
+
+    &__inner {
+        @include inner();
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: math.div(29, 24);
+        letter-spacing: #{math.div(100, 1000)}em;
+    }
+}
+
+/*global nav*/
+.nav {
+    &__list {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: 30px;
+    }
+
+    a {
+        font-size: 12px;
+        line-height: math.div(14, 12);
+    }
+
+    a:hover,
+    &__active {
+        color: $color-tag;
+    }
+}
+
+/*footer*/
+.footer {
+    background-color: #2F2F2F;
+    padding: 80px 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__copy {
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        color: $color-main;
+        text-align: center;
+        line-height: math.div(20, 12);
+    }
+}
+
+
+
+/* post */
+.post {
+    &__pic {
+        position: relative;
+
+        &--new::before {
+            content: "new";
+            display: inline-block;
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: math.div(12, 12);
+            text-transform: uppercase;
+            background-color: $color-tag;
+        }
+    }
+
+    &__title {
+        margin: 30px 0 20px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: math.div(31, 18);
+    }
+}
+
+/* card */
+.card {
+    display: grid;
+    padding: 45px 40px;
+    border: 1px solid #a3a3a3;
+    border-radius: 20px;
+    background-color: #fff;
+
+    &__text {
+        margin-bottom: 40px;
+    }
+}
+
+/*customer*/
+.customer {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: 20px;
+
+
+    &__address {
+        font-weight: bold;
+    }
+}
+
+
+
+
+
+
+
+/*mainvisual*/
+.mainvisual {
+    padding: 80px 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__pic {
+        width: 100%;
+    }
+}
+
+
+
+
+/*philosophy*/
+.philosophy {
+    padding-bottom: 120px;
+
+    &__title {
+        @include title-main("PHILOSOPHY");
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+    &__text {
+        max-width: 780px;
+        margin: auto;
+        text-align: center;
+        display: grid;
+        row-gap: 60px;
+
+        p {
+            line-height: math.div(34, 14);
+            word-break: keep-all;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*works*/
+
+.works {
+    padding-bottom: 120px;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main("WORKS");
+
+    }
+
+    &__list {
+        display: grid;
+        row-gap: 60px;
+
+        @include mq() {
+            grid-template-columns: 1fr 1fr;
+            column-gap: percentage(math.div(80, 1000));
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*voice*/
+.voice {
+    padding: 80px 0 120px;
+    background-color: $color-bg;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main("VOICE")
+    }
+
+    &__list {
+        display: grid;
+        row-gap: 60px;
+
+        @include mq(desktop) {
+            grid-template-columns: 1fr 1fr;
+            column-gap: percentage(math.div(80, 1000));
+        }
+    }
+
+}
