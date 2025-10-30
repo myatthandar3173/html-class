@@ -1,0 +1,245 @@
+@use "sass:math";
+
+// =================================================================
+//  Variables
+// =================================================================
+
+// --- Spacing ---
+$space-s: 0.5rem; // 8px
+$space-m: 1rem; // 16px
+$space-l: 1.5rem; // 24px
+$space-xl: 2rem; // 32px
+$space-xxl: 2.5rem; // 40px
+$space-xxxl: 3rem; // 48px
+
+// --- Colors ---
+$color-text: #5A5A5A;
+$color-base: #2B2B2B;
+$color-main: #EDAA14;
+$color-accent: #ED145B;
+$color-bg: #fff;
+
+// --- Typography ---
+$font-size-base: 14;
+$font-family-gothic: Verdana, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+$font-family-mincho: "Times New Roman", Times, "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+
+// --- Breakpoints ---
+$breakpoints: (
+    "tablet": 768px,
+    "desktop": 1024px
+);
+
+
+// =================================================================
+//  Functions
+// =================================================================
+
+// pxをremに変換する
+// @param {number} $px-value - px値
+// @return {string} - rem値
+@function rem($px-value) {
+    @return #{math.div($px-value, $font-size-base)}rem;
+}
+
+// XDのトラッキング値をemに変換する
+// @param {number} $xd-value - XDのトラッキング値
+// @return {string} - em値
+@function ls($xd-value) {
+    @return #{math.div($xd-value, 1000)}em;
+}
+
+
+// =================================================================
+//  Mixins
+// =================================================================
+
+// メディアクエリ (モバイルファースト)
+// @param {string} $breakpoint - $breakpointsのキー
+@mixin mq($breakpoint: desktop) {
+    @media (width >=map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+// インナー幅の指定
+// @param {number} $mw - max-width
+// @param {number} $w  - width
+@mixin inner($mw: 1000px, $w: 90%) {
+    max-width: $mw;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+// =================================================================
+//  Common
+// =================================================================
+
+body {
+    color: $color-text;
+    font-size: $font-size-base;
+    font-family: $font-family-gothic;
+    line-height: math.div(24, 14);
+    letter-spacing: ls(25);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+.header {
+    padding: $space-xxl 0;
+    background-color: rgba($color: $color-base, $alpha: 0.8);
+    position: fixed;
+    width: 100%;
+
+
+    &__inner {
+        @include inner();
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.gnav {
+    &__list {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: rem(30);
+    }
+
+    &__item {
+        color: $color-bg;
+        font-weight: bold;
+    }
+
+    &__active {
+        color: $color-accent;
+    }
+}
+
+
+
+.footer {
+    padding: $space-xxl 0 rem(140);
+    background-color: $color-base;
+    color: $color-bg;
+
+    &__inner {
+        @include inner();
+    }
+
+}
+
+span {
+    color: $color-accent;
+}
+
+.btn {
+    display: block;
+    width: 200px;
+    margin-top: rem(60);
+    padding: rem(15) 0;
+    background-color: $color-accent;
+    color: $color-bg;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+}
+
+.btn--tag {
+    margin-top: $space-xxxl;
+    background-color: $color-main;
+}
+
+.post {
+    &__title {
+        margin-top: $space-l;
+        margin-bottom: $space-xl;
+        padding-bottom: $space-m;
+        color: #000;
+        font-size: $space-m;
+        font-weight: bold;
+        border-bottom: 1px solid $color-text;
+    }
+
+}
+
+
+
+
+
+
+
+
+// =================================================================
+// Index.html
+// =================================================================
+.mainvisual {
+    padding: rem(240) 0 rem(140);
+    background: url(../images/bg_mainvisual.png) no-repeat center/cover;
+
+    @include mq() {
+        text-align: center
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        color: $color-bg;
+        margin-bottom: rem(40);
+        font-size: $space-xxxl;
+        font-weight: bold;
+    }
+
+    &__text {
+        color: $color-bg;
+        display: grid;
+        row-gap: $space-l;
+    }
+
+    & .btn {
+        @include mq() {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.updates {
+    margin: rem(120) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        padding-bottom: $space-xxxl;
+        color: #000;
+        font-size: $space-xl;
+        font-weight: bold;
+        line-height: math.div(38, 32);
+        text-align: center;
+    }
+
+    &__list {
+        display: grid;
+        row-gap: rem(60);
+
+        @include mq() {
+            grid-template-columns: 1fr 1fr;
+            column-gap: rem(60);
+        }
+    }
+
+
+}
