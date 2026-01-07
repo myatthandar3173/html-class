@@ -30,6 +30,25 @@
   </header>
 
   <main class="main">
+    <section class="pickup">
+      <div class="pickup__inner">
+        <div class="pickup__info">
+          <h2 class="pickup__title">PROJECT<span>Lorum</span></h2>
+          <div class="pickup__nav">
+            <button class="pickup__prev">←</button>
+            <button class="pickup__next">→</button>
+          </div>
+          <ul class="pickup__number">
+            <li>01</li>
+            <li>02</li>
+          </ul>
+        </div>
+        <div class="pickup__pic">
+          <a class="btn pickup__btn" href="#">View Project</a>
+        </div>
+      </div>
+    </section>
+
     <section class="about">
       <div class="about__inner">
         <div class="about__container">
@@ -133,11 +152,83 @@
     <section class="contact">
       <div class="contact__inner">
         <h2 class="contact__title">Contact Us</h2>
+        <form class="contact__form" action="#">
+          <div class="contact__list">
+            <label class="contact__item">
+              <p class="contact__label">Name</p>
+              <input type="text" name="name" placeholder="&nbsp;">
+            </label>
+            <label class="contact__item">
+              <p class="contact__label">Phone Number</p>
+              <input type="tel" name="tel" placeholder="&nbsp;" required>
+            </label>
+            <label class="contact__item">
+              <p class="contact__label">E-mail</p>
+              <input type="email" name="email" placeholder="&nbsp;" required>
+            </label>
+            <label class="contact__item">
+              <p class="contact__label">Interested In</p>
+              <input type="text" name="interested" placeholder="&nbsp;">
+            </label>
+            <label class="contact__item">
+              <p class="contact__label">Message</p>
+              <textarea name="message" rows="6" placeholder="&nbsp;" required></textarea>
+            </label>
+          </div>
+          <div class="contact__pic"></div>
+          <button class="btn contact__btn">send email</button>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer"></footer>
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__top-inner">
+        <div class="footer__logo">
+          <img src="./images/img_logo_white.svg" alt="DIGITAL PROJECT">
+        </div>
+        <dl class="footer__nav">
+          <dt class="footer__term">Information</dt>
+          <dd>
+            <ul class="footer__list">
+              <li><a href="#">Main</a></li>
+              <li><a href="#">Gallery</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Certifications</a></li>
+              <li><a href="#">Contacts</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl class="footer__info">
+          <dt class="footer__term">Contacts</dt>
+          <dl>
+            <ul class="footer__list">
+              <li class="footer__address">1234 Sample Street<br>Austin Texas 78704</li>
+              <li class="footer__tel">512.333.2222</li>
+              <li class="footer__mail">sampleemail@gmail.com</li>
+            </ul>
+          </dl>
+        </dl>
+        <dl class="footer__sns">
+          <dt class="footer__term">Social Media</dt>
+          <dd>
+            <ul class="footer__list">
+              <li><a href="#"><img src="./images/icon_facebook.svg" alt="Facebookへ"></a></li>
+              <li><a href="#"><img src="./images/icon_twitter.svg" alt="Twitterへ"></a></li>
+              <li><a href="#"><img src="./images/icon_linkedin.svg" alt="LinkedInへ"></a></li>
+              <li><a href="#"><img src="./images/icon_pinterest.svg" alt="Pinterestへ"></a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <small class="footer__copy">© 2021 All Rights Reserved</small>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

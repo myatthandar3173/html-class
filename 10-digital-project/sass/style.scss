@@ -43,11 +43,11 @@ $breakpoints: (
     @return #{math.div($px-value, $font-size-base)}rem;
 }
 
-// XDのトラッキング値をemに変換する
-// @param {number} $xd-value - XDのトラッキング値
+// Figmaのトラッキング値をemに変換する
+// @param {number} $xd-value - Figmaのトラッキング値
 // @return {string} - em値
 @function ls($xd-value) {
-    @return #{math.div($xd-value, 1000)}em;
+    @return #{math.div($xd-value, 100)}em;
 }
 
 
@@ -132,7 +132,7 @@ img {
     &__item {
         font-size: rem(12);
         text-transform: uppercase;
-        letter-spacing: 0.2em;
+        letter-spacing: ls(20);
     }
 
     &__link {
@@ -152,6 +152,80 @@ img {
     padding-top: rem(100);
 }
 
+.footer {
+    background-color: $color-bg;
+
+    &__top {
+        padding: rem(60) 0;
+        color: #fff;
+
+        &-inner {
+            @include inner();
+            display: grid;
+            grid-auto-flow: column;
+            column-gap: percentage(math.div(30, 1170));
+        }
+    }
+
+    &__logo {
+        min-width: rem(145);
+    }
+
+    &__term {
+        margin-bottom: rem(25);
+        font-weight: bold;
+    }
+
+    &__sns {
+        .footer__list {
+            display: grid;
+            grid-template-columns: repeat(4, rem(20));
+            column-gap: percentage(math.div(40, 200));
+        }
+    }
+
+    &__list {
+        li {
+            margin-bottom: rem(15);
+            font-size: rem(14);
+            letter-spacing: ls(3);
+        }
+
+        .footer__address {
+            margin-bottom: rem(32);
+            padding-left: rem(30);
+            background: url(../images/icon_address.svg) no-repeat left rem(5);
+        }
+
+        .footer__tel {
+            margin-bottom: rem(32);
+            padding-left: rem(30);
+            background: url(../images/icon_tel.svg) no-repeat left rem(5);
+        }
+
+        .footer__mail {
+            padding-left: rem(30);
+            background: url(../images/icon_mail.svg) no-repeat left rem(5);
+        }
+    }
+
+    &__bottom {
+        border-top: 1px solid #fff;
+        padding: rem(24) 0;
+        text-align: center;
+
+        &-inner {
+            @include inner();
+        }
+    }
+
+    &__copy {
+        color: #c8c8c8;
+        font-size: rem(12);
+        opacity: .5;
+    }
+}
+
 .btn {
     display: block;
     width: rem(220);
@@ -162,7 +236,7 @@ img {
     text-align: center;
     font-size: rem(12);
     line-height: 1;
-    letter-spacing: 0.2em;
+    letter-spacing: ls(20);
     text-transform: uppercase;
 
     &::after {
@@ -175,6 +249,98 @@ img {
 // =================================================================
 //  Index
 // =================================================================
+.pickup {
+    margin-bottom: rem(120);
+
+    &__inner {
+        @include inner();
+        display: grid;
+        grid-template-columns: 400fr 770fr;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        @include title-main();
+        margin-top: auto;
+        margin-bottom: rem(90);
+        padding-right: rem(30);
+
+        span {
+            display: block;
+            color: $color-main;
+            font-weight: bold;
+        }
+    }
+
+    &__nav {
+        position: relative;
+        margin-bottom: rem(90);
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+        column-gap: percentage(math.div(20, 400));
+
+        &::after {
+            content: "";
+            width: calc(100% - percentage(math.div(20, 400)) - rem(100));
+            display: block;
+            border-bottom: 1px solid $color-text;
+            position: absolute;
+            bottom: 50%;
+            right: 0;
+        }
+
+        button {
+            width: rem(50);
+            height: rem(50);
+            border: 1px solid $color-text;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f9f9f9;
+            }
+        }
+    }
+
+    &__number {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+        color: $color-base;
+        font-size: rem(24);
+        line-height: 1;
+
+        li:first-child::after {
+            content: "";
+            display: inline-block;
+            width: rem(40);
+            margin: 0 rem(20);
+            border-bottom: 2px solid;
+            transform: translateY(-0.3em) rotate(-45deg); //line rotate
+        }
+    }
+
+    &__pic {
+        position: relative;
+        aspect-ratio: 770/830;
+        background: url(../images/pic_main01.png) no-repeat center/cover;
+    }
+
+    &__btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        color: $color-main;
+    }
+}
 
 .about {
     margin-bottom: rem(150);
@@ -234,7 +400,7 @@ img {
 }
 
 .mission {
-    margin-bottom: 120px;
+    margin-bottom: rem(120);
 
     &__inner {
         @include inner();
@@ -272,6 +438,8 @@ img {
 }
 
 .projects {
+    margin-bottom: rem(120);
+
     &__inner {
         @include inner();
     }
@@ -338,7 +506,7 @@ img {
         margin-top: rem(15);
         font-size: rem(12);
         line-height: 1;
-        letter-spacing: 0.2em;
+        letter-spacing: ls(20);
         text-transform: uppercase;
 
         &::after {
@@ -353,6 +521,8 @@ img {
 }
 
 .contact {
+    margin-bottom: rem(120);
+
     &__inner {
         @include inner ();
     }
@@ -360,5 +530,61 @@ img {
     &__title {
         @include title-main();
         margin-bottom: rem(20);
+    }
+
+    &__pic {
+        background: url(../images/pic_contact01.png) no-repeat center/cover;
+    }
+
+    &__form {
+        display: grid;
+        grid-template-columns: 390fr 750fr;
+        column-gap: percentage(math.div(30, 1170));
+    }
+
+    &__list {
+        display: grid;
+        row-gap: rem(10);
+        color: #8d8d8d;
+        font-size: rem(14);
+        letter-spacing: ls(4);
+
+        input,
+        textarea {
+            width: 100%;
+            padding: rem(15) rem(20);
+            background-color: #f3f3f3;
+            font-size: rem(14);
+        }
+    }
+
+    &__item {
+        position: relative;
+        display: block;
+
+        &:has(:focus),
+        &:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown)) {
+            .contact__label {
+                display: none;
+            }
+        }
+
+        &:has(:required) {
+            .contact__label::after {
+                content: "*";
+                color: #C30000;
+            }
+        }
+    }
+
+    &__label {
+        position: absolute;
+        top: rem(15);
+        left: rem(20);
+        pointer-events: none;
+    }
+
+    &__btn {
+        margin-top: rem(77);
     }
 }
